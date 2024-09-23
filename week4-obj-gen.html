@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- --------------------------- 직접 객체 ----------------------------------- -->
+    <script>
+        let element1 = new Object();
+
+        element1.korName = "웹프로그래밍";
+        element1.engName = "Web Programming";
+        element1.classCode = "V024003";
+        element1.nStudent = 0;
+
+        element1.register = function() {
+            this.nStudent++;
+        };
+        element1.unregister = function() {
+            this.nStudent--;
+        };
+        element1.getStudentCount = function() {
+            return this.nStudent;
+        }
+    </script>
+    <h1>1. 직접 객체 만들기</h1>
+    <div>
+        교과목 이름 = 
+        <script> document.write(element1.korName); </script><br>
+        등록 학생 수 =
+        <script> document.write(element1.getStudentCount()); </script><br>
+        after register: 등록 학생 수 = 
+        <script> element1.register(); </script>
+        <script> document.write(element1.getStudentCount()); </script><br>
+    </div>
+    <!-- --------------------------- 리터럴 ----------------------------------- -->
+    <script>
+        let element2 = {
+            korName: "웹프로그래밍",
+            engName: "Web Programming",
+            classCode: "V024003",
+            nStudent: 0,
+            register() {
+                this.nStudent++;
+            },
+            unregister() {
+                this.nStudent--;
+            },
+            getStudentCount() {
+                return this.nStudent;
+            }
+        }
+
+    </script>
+
+    <h1>2. 리터럴 표기법</h1>
+    <div>
+        교과목 이름 = 
+        <script> document.write(element2.korName); </script><br>
+        등록 학생 수 =
+        <script> document.write(element2.getStudentCount()); </script><br>
+        after register: 등록 학생 수 = 
+        <script> element2.register(); </script>
+        <script> document.write(element2.getStudentCount()); </script><br>
+    </div>
+
+    <!-- --------------------------- 프로토타입 ----------------------------------- -->
+    <script>
+
+        function Element3(korName, engName, classCode, nStudent) {
+            this.korName = "웹프로그래밍",
+            this.engName = "Web Programming",
+            this.classCode= "V024003",
+            this.nStudent = 0;
+
+            this.register = function() {
+                this.nStudent++;
+            };
+            this.unregister = function() {
+                this.nStudent--;
+            };
+            this.getStudentCount = function() {
+                return this.nStudent;
+            };
+        }
+
+        let element3 = new Element3();
+
+    </script>
+    <h1>3. Prototype</h1>
+    <div>
+        교과목 이름 = 
+        <script> document.write(element3.korName); </script><br>
+        등록 학생 수 =
+        <script> document.write(element3.getStudentCount()); </script><br>
+        after register: 등록 학생 수 = 
+        <script> element3.register(); </script>
+        <script> document.write(element3.getStudentCount()); </script><br>
+    </div>
+</body>
+</html>
