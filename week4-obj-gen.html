@@ -69,10 +69,10 @@
     <!-- --------------------------- 프로토타입 ----------------------------------- -->
     <script>
 
-        function Element3(korName, engName, classCode, nStudent) {
-            this.korName = "웹프로그래밍",
-            this.engName = "Web Programming",
-            this.classCode= "V024003",
+        function Element3(korName, engName, classCode) {
+            this.korName = korName;
+            this.engName = engName;
+            this.classCode= classCode;
             this.nStudent = 0;
 
             this.register = function() {
@@ -86,7 +86,7 @@
             };
         }
 
-        let element3 = new Element3();
+        let element3 = new Element3("웹프로그래밍", "Web Programming", "V024003");
 
     </script>
     <h1>3. Prototype</h1>
