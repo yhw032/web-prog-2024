@@ -9,11 +9,9 @@
     function addAnswer(obj, text){
       let answer = document.createElement('p');
       answer.innerHTML = text;
-      answer.addEventListener("click", function() {
-          obj.parentElement.removeChild(answer);
-        }
-      )
-
+      answer.onclick = function() {
+        obj.parentElement.removeChild(answer);
+      }
       obj.parentElement.appendChild(answer);
     }
   </script>
