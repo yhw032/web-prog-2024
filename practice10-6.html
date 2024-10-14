@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>div 태그에 시계 만들기</title>
+    <style>
+        #time {
+            border: 1px black solid;
+            width: 120px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            const time = document.getElementById('time');
+            updateClock();
+        }
+        let clockState;
+
+        function toggleClock() {
+            if(clockState != null) {
+                stopClock();
+            } else {
+                updateClock();
+            }
+        }
+
+        
+        function updateClock() {
+            let now = new Date();
+            let nowTime = now.toLocaleTimeString();
+            
+            time.innerHTML = nowTime;
+            time.style.color = "black";
+            clockState = setTimeout(updateClock, 1000);
+        }
+
+        function stopClock() {
+            clearTimeout(clockState);
+            clockState = null;
+            time.style.color = "grey";
+        }
+    
+    </script>
+</head>
+<body>
+    <h3>div 태그에 시계 만들기</h3>
+    <p>시계를 클릭하면 시계가 멈추고 다시 클릭하면 가기 시작한다.</p>
+    <hr>
+    <div id="time" onclick="toggleClock()"></div>
+</body>
+</html>

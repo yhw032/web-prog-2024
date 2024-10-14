@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex10-4</title>
+</head>
+<body>
+    <span id="span" style="background-color: yellow;">자동 회전하는 텍스트입니다. </span>
+    <script>
+        let span = document.getElementById('span');
+        let timerID = setInterval("doRotate()", 200);
+
+        span.onclick = function() {
+            clearInterval(timerID);
+        }
+
+        function doRotate(){
+            let str = span.innerHTML;
+            //let firstChar = str.charAt(0);
+            //let remains = str.substring(1);
+            let firstChar = str.substr(0, 1);
+            let remains = str.substr(1, str.length - 1);
+
+            str = remains + firstChar;
+
+            span.innerHTML = str;
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice9-10</title>
+    <style>
+        input{
+            width: 70px; height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h3>계산기 만들기</h3>
+    <hr>
+    <input id="exp" type="text" style="width: 300px;" value="0">
+    <table>
+        <tr>
+            <td><input type="button" value="Back" onclick="erase()"></td>
+            <td><input type="button" value="CE" onclick="clearAll()"></td>
+            <td><input type="button" value="C" onclick="clearAll()"></td>
+            <td><input type="button" value="=" onclick="calculate()"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="7" onclick="inputBtn('7')"></td>
+            <td><input type="button" value="8" onclick="inputBtn('8')"></td>
+            <td><input type="button" value="9" onclick="inputBtn('9')"></td>
+            <td><input type="button" value="/" onclick="inputBtn('/')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4" onclick="inputBtn('4')"></td>
+            <td><input type="button" value="5" onclick="inputBtn('5')"></td>
+            <td><input type="button" value="6" onclick="inputBtn('6')"></td>
+            <td><input type="button" value="*" onclick="inputBtn('*')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="1" onclick="inputBtn('1')"></td>
+            <td><input type="button" value="2" onclick="inputBtn('2')"></td>
+            <td><input type="button" value="3" onclick="inputBtn('3')"></td>
+            <td><input type="button" value="-" onclick="inputBtn('-')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="0" onclick="inputBtn('0')"></td>
+            <td><input type="button" value="+" onclick="inputBtn('+')"></td>
+            <td><input type="button" value="NONE"></td>
+            <td><input type="button" value="NONE"></td>
+        </tr>
+    </table>
+
+    <script>
+        let exp = document.getElementById('exp');
+
+        function inputBtn(value) {
+            if(exp.value == '0') {
+                exp.value = '';
+            }
+            exp.value += value;
+        }
+
+        function erase() {
+            let len = exp.value.length;
+            exp.value = exp.value.substring(0, len - 1);
+        }
+        function clearAll() {
+            exp.value = '0';
+        }
+
+        function calculate() {
+            exp.value = eval(exp.value);
+        }
+    </script>
+</body>
+</html>
