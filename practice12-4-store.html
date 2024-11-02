@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    window.onload = function() {
+      let today = new Date();
+      let formattedDate = today.getFullYear() + '.' + 
+                          ('0' + (today.getMonth() + 1)).slice(-2) + '.' + 
+                          ('0' + (today.getDate() - 1)).slice(-2);
+      document.getElementById('today').textContent = formattedDate;
+    }
+
+    function saveDiary() {
+      let diaryContent = document.getElementById('diary').value;
+      let today = document.getElementById('today').textContent;
+      let diary = {
+        date: today,
+        content: diaryContent
+      };
+      let diaryList = JSON.parse(localStorage.getItem('diaryList')) || [];
+      diaryList.push(diary);
+      localStorage.setItem('diaryList', JSON.stringify(diaryList));
+    }
+
+    function viewDiary() {
+      window.open('practice12-4-view.html', 'view', 'width=400, height=400');
+    }
+  </script>
+</head>
+<body>
+  <h3>일기 쓰기</h3>
+  <hr>
+  <p>오늘 <span id="today"></span></p>
+  <textarea name="" id="diary" cols="30" rows="10"></textarea>
+  <br>
+  <button onclick="saveDiary()">저장</button>
+  <button onclick="viewDiary()">보기</button>
+</body>
+</html>

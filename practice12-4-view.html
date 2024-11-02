@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    window.onload = function() {
+      let diaryList = JSON.parse(localStorage.getItem('diaryList')) || [];
+      let table = document.getElementById('diary-list');
+      let count = 1;
+      diaryList.forEach(diary => {
+        let tr = document.createElement('tr');
+        let td1 = document.createElement('td');
+        let td2 = document.createElement('td');
+        let td3 = document.createElement('td');
+        td1.textContent = count;
+        td2.textContent = diary.date;
+        td3.textContent = diary.content;
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        table.appendChild(tr);
+
+        count++;
+      });
+    }
+  </script>
+  <style>
+    #diary-list {
+      width: 100%;
+    }
+
+    #diary-list td {
+      border-bottom: 1px solid black;
+      padding: 5px;
+    }
+
+    #diary-list td:first-child {
+      border: 1px solid black;
+    }
+
+    #diary-list td:first-child,
+    #diary-list td:nth-child(2) {
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h3>일기 보기</h3>
+  <hr>
+  <table id="diary-list">
+  </table>
+</body>
+</html>

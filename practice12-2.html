@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>세션 스토리지에 쓰기</title>
+  <script>
+    function saveItem() {
+      let itemName = document.getElementById('item-name').value;
+      let itemCount = document.getElementById('item-count').value;
+
+      let item = {
+        name: itemName,
+        count: itemCount
+      };
+
+      let items = sessionStorage.getItem('items');
+      if (items) {
+        items = JSON.parse(items);
+      } else {
+        items = [];
+      }
+
+      items.push(item);
+      sessionStorage.setItem('items', JSON.stringify(items));
+    }
+
+    function searchItem() {
+      let itemName = document.getElementById('item-name').value;
+      let items = sessionStorage.getItem('items');
+
+      if (items) {
+        items = JSON.parse(items);
+        let foundItem = items.find(item => item.name === itemName);
+        if (foundItem) {
+          document.getElementById('item-count').value = foundItem.count;
+        } else {
+          alert('Item not found');
+        }
+      } else {
+        alert('No items in storage');
+      }
+    }
+  </script>
+</head>
+<body>
+  <h3>세션 스토리지에 구입 리스트 저장</h3>
+  <hr>
+  품목명 : <input type="text" id="item-name">
+  개수 : <input type="number" id="item-count">
+  <br>
+  <button onclick="saveItem()">저장</button>
+  <button onclick="searchItem()">검색</button>
+</body>
+</html>
