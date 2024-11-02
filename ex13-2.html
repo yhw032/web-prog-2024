@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h3>자바스크립트로 오디오 제어</h3>
+  <hr>
+  <audio id="audio" src="media/cancan.mp3" loop controls>웹 브라우저가 audio 태그를 지원하지 않습니다.</audio>
+  <div id="msg">이곳에 오디오 제어 메시지 출력</div>
+  <button id="play" type="button" onclick="control(event)">play</button>
+  <button id="pause" type="button" onclick="control(event)">pause</button>
+  <button id="replay" type="button" onclick="control(event)">replay</button>
+  <button id="vol-" type="button" onclick="control(event)">vol-</button>
+  <button id="vol+" type="button" onclick="control(event)">vol+</button>
+  <button id="mute on/off" type="button" onclick="control(event)">mute on/off</button>
+
+  <script>
+    let div = document.getElementById("msg");
+    let audio = document.getElementById("audio");
+
+    function control(e) {
+      let id = e.target.id;
+      switch (id) {
+        case "play":
+          audio.play();
+          div.innerHTML = "재생중입니다";
+          break;
+        case "pause":
+          audio.pause();
+          div.innerHTML = "일시정지되었습니다";
+          break;
+        case "replay":
+          audio.load();
+          audio.play();
+          div.innerHTML = audio.src + "을 처음부터 재생합니다";
+          break;
+        case "vol-":
+          audio.volume -= 0.1;
+          if(audio.volume < 0.1) audio.volume = 0.0;
+
+          div.innerHTML = "음량 0.1 감소, 현재: " + audio.volume;
+          break;
+        case "vol+":
+          audio.volume += 0.1;
+          if(audio.volume > 0.9) audio.volume = 1.0;
+
+          div.innerHTML = "음량 0.1 증가, 현재: " + audio.volume;
+          break;
+        case "mute on/off":
+          audio.muted = !audio.muted;
+
+          if(audio.muted) div.innerHTML = "음소거";
+          else div.innerHTML = "음소거 해제";
+          break;
+      }
+    }
+  </script>
+</body>
+</html>
